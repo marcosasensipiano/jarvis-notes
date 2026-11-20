@@ -1,10 +1,11 @@
 import argparse
+import json
 import sys
 from datetime import datetime
-from . import brain, builder, dashboard, learner, memory, paths, skills
+from . import brain, builder, dashboard, learner, memory, paths, profile, skills, spend
 
 BUILTINS = {"learn", "today", "skills", "teach", "ideas", "build", "approve", "dashboard", "discover",
-            "gestures", "schedule", "status", "run", "help"}
+            "gestures", "schedule", "status", "run", "help", "budget", "about"}
 
 
 def _run_text(text: str) -> int:
@@ -67,6 +68,7 @@ def cmd_build(a):
         return 1
     print(builder.build(m, idea))
     memory.save(m)
+    dashboard.write(memory.load())
 
 
 def cmd_approve(a):
@@ -114,6 +116,51 @@ With an API key, Jarvis invents new skills and builds ideas; export ANTHROPIC_AP
 or use the GitHub Action in .github/workflows/daily-learning.yml, which opens a PR you review.""")
 
 
+def _money(x):
+    return "-" if x is None else f"${x:.2f}"
+
+
+def cmd_budget(a):
+    args = a.args
+    try:
+        if args and args[0] == "add" and len(args) == 2:
+            spend.add_budget(float(args[1]))
+        elif len(args) == 1:
+            spend.set_budget(float(args[0]))
+        elif args:
+            print("Usage: jarvis budget [TOTAL | add EXTRA]   (amounts in USD, as shown in the Anthropic console)")
+            return 1
+    except ValueError:
+        print("That isn't a number. Example: jarvis budget 5.8")
+        return 1
+    b = spend.summary()
+    if b["budget"] is None:
+        print(f"No budget set. Spent so far (estimate): ${b['spent']:.3f} over {b['calls']} calls.\n"
+              "Set one so Jarvis can never overspend: jarvis budget 5.8")
+    else:
+        print(f"Budget {_money(b['budget'])} | spent ${b['spent']:.3f} | LEFT {_money(b['left'])} | {b['calls']} calls")
+        if b["last"]:
+            print(f"Last call: ${b['last']['usd']:.4f} ({b['last']['purpose'] or 'unlabelled'}, {b['last']['model']})")
+        print("Estimate from token counts x published prices; the Anthropic console is the source of truth.")
+    dashboard.write(memory.load())
+
+
+def cmd_about(a):
+    p = profile.load()
+    if a.show:
+        print(json.dumps(p, indent=2, ensure_ascii=False) if p else "Nothing yet. Run: jarvis about")
+        return
+    print("Tell Jarvis about you so what it learns and proposes is for YOU. Enter keeps the current answer.\n"
+          "(When the API brain is on, a short summary of this is sent to Anthropic. Skip anything private.)\n")
+    for key, question in profile.FIELDS:
+        cur = p.get(key, "")
+        ans = input(f"{question}" + (f" [{cur}]" if cur else "") + "\n> ").strip()
+        if ans:
+            p[key] = ans
+    profile.save(p)
+    print("Saved to data/profile.json (stays on this computer).")
+
+
 def cmd_status(a):
     m = memory.load()
     reg = skills.discover()
@@ -121,6 +168,9 @@ def cmd_status(a):
     print(f"Day {m['day']} | {len(reg)} skills | {len(m['upgrades'])} visual upgrades | {len(m['ideas'])} ideas")
     print("Brain:", "online (Claude API)" if brain.available() else "offline (built-in library only)")
     print("TV:", tv.describe_config())
+    b = spend.summary(m)
+    print("Budget:", "none set" if b["budget"] is None else f"${b['left']:.2f} left of ${b['budget']:.2f} (estimate)")
+    print("Profile:", "set" if profile.summary() else "empty (run `jarvis about`)")
     print("Unmet requests:", dict(sorted(m["gaps"].items(), key=lambda kv: -kv[1])[:5]) or "none")
 
 
@@ -145,6 +195,10 @@ def build_parser():
     s.set_defaults(fn=cmd_gestures)
     sub.add_parser("schedule", help="how to run learning daily").set_defaults(fn=cmd_schedule)
     sub.add_parser("status", help="overview").set_defaults(fn=cmd_status)
+    s = sub.add_parser("budget", help="show or set the API budget (USD); Jarvis never exceeds it")
+    s.add_argument("args", nargs="*"); s.set_defaults(fn=cmd_budget)
+    s = sub.add_parser("about", help="tell Jarvis about you so it learns things bound to you")
+    s.add_argument("--show", action="store_true"); s.set_defaults(fn=cmd_about)
     return p
 
 

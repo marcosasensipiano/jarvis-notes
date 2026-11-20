@@ -34,7 +34,7 @@ def generate_skill(target: str, installed: list, say=print, attempts: int = 2):
         if error:
             prompt += f"\nYour previous attempt failed with:\n{error[-1500:]}\nFix it."
         try:
-            spec = brain.ask_json(prompt, SYSTEM)
+            spec = brain.ask_json(prompt, SYSTEM, purpose="skill")
             name = spec["name"]
             if not NAME_RE.match(name) or name in installed:
                 raise ValueError(f"bad or duplicate skill name: {name!r}")
@@ -71,7 +71,7 @@ def generate_build(title: str, why: str, dest: Path, say=print):
         'Reply JSON only: {"files":{"path":"content",...}}'
     )
     try:
-        spec = brain.ask_json(prompt, SYSTEM, max_tokens=8000)
+        spec = brain.ask_json(prompt, SYSTEM, max_tokens=8000, purpose="build")
         packages.write_package(dest, spec["files"])
         problems = packages.guard_package(dest)
         if problems:
@@ -91,7 +91,7 @@ def design_upgrade(m: dict):
         "Respect prefers-reduced-motion for any animation.\n"
         'Reply JSON only: {"id":"snake_case","name":str,"lesson":str (what changed and the CSS idea behind it),"css":str}'
     )
-    u = brain.ask_json(prompt, SYSTEM, max_tokens=1500)
+    u = brain.ask_json(prompt, SYSTEM, max_tokens=1500, purpose="upgrade")
     if not (re.match(r"^[a-z_]{3,24}$", u["id"]) and upgrades.safe_css(u["css"])):
         raise ValueError("unsafe or malformed upgrade")
     return {"id": u["id"], "name": str(u["name"]), "lesson": str(u["lesson"]), "css": u["css"]}

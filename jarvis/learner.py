@@ -3,7 +3,7 @@ write a lesson, update the journal and dashboard."""
 import re
 import shutil
 from datetime import date
-from . import brain, dashboard, generate, ideas, memory, paths, skills, upgrades
+from . import brain, dashboard, generate, ideas, memory, paths, profile, skills, upgrades
 
 LIBRARY_PRIORITY = ["daily_briefing", "habit_tracker", "focus_session", "expense_log"]
 
@@ -36,9 +36,12 @@ def acquire_skill(m: dict, say=print):
     installed = sync(m)
     gap = max(m["gaps"], key=m["gaps"].get) if m["gaps"] else None
     if brain.available():
+        about = profile.summary()
         target = (f"The user keeps asking: {gap!r}. Build the skill that handles it." if gap
                   else "Your choice: the most useful small skill that makes the user's day easier, given their usage: "
                        f"{m['usage']}")
+        if about:
+            target += f" About the user (make the skill fit them, not a generic person): {about}"
         say(f"Learning with the brain: {target[:90]}")
         name = generate.generate_skill(target, sorted(installed), say)
         if name:

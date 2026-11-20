@@ -1,13 +1,14 @@
 """Static HTML dashboard. What it looks like depends on which visual upgrades Jarvis has unlocked."""
 import html
 import math
-from . import paths, skills, upgrades
+from . import paths, skills, spend, upgrades
 
 BASE_CSS = """
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:24px 16px}
 main{max-width:960px;margin:auto}h1{letter-spacing:.3em;font-weight:400;margin:0 0 4px}h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
 .sub{opacity:.7;margin-bottom:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .card{background:var(--card);border:1px solid var(--accent-dim);border-radius:10px;padding:16px}.stat{font-size:34px;color:var(--accent)}
+.bar{height:8px;border-radius:4px;background:var(--accent-dim);overflow:hidden;margin:10px 0 6px}.bar span{display:block;height:100%;background:var(--accent)}.bar.low span{background:#ff6b6b}
 ul{padding-left:18px;margin:0}li{margin:4px 0}code{color:var(--accent)}.muted{opacity:.6}
 """
 
@@ -23,6 +24,18 @@ def _constellation(names):
     dots = "".join(f'<circle class="node" cx="{x:.1f}" cy="{y:.1f}" r="5"/><text x="{x:.1f}" y="{y + 16:.1f}">{html.escape(n)}</text>'
                    for n, x, y in pts)
     return f'<svg class="constellation" viewBox="0 0 300 300" role="img" aria-label="Skill constellation">{lines}<circle class="node" cx="150" cy="150" r="9"/>{dots}</svg>'
+
+
+def _budget_card(m):
+    b = spend.summary(m)
+    if b["budget"] is None:
+        body = ('<div class="stat">no budget</div><div class="muted">Spent $%.3f so far. Set one with '
+                '<code>jarvis budget 5.8</code>.</div>' % b["spent"])
+    else:
+        low = " low" if b["left"] < 0.2 * b["budget"] else ""
+        body = (f'<div class="stat">${b["left"]:.2f} left</div><div class="bar{low}"><span style="width:{100 - b["pct_used"]:.0f}%"></span></div>'
+                f'<div class="muted">spent ${b["spent"]:.3f} of ${b["budget"]:.2f} · {b["calls"]} calls</div>')
+    return f'<section class="card"><h2>Brain budget</h2>{body}<div class="muted">estimate; the Anthropic console is the source of truth</div></section>'
 
 
 def render(m: dict) -> str:
@@ -47,6 +60,7 @@ def render(m: dict) -> str:
 <div class="grid">
 <section class="card"><h2>Days learning</h2><div class="stat">{m['day']}</div></section>
 <section class="card"><h2>Skills</h2><div class="stat">{len(m['skills'])}</div></section>
+{_budget_card(m)}
 <section class="card"><h2>Look</h2><ul>{up_items}</ul></section>
 {cons}
 <section class="card"><h2>Skills I have</h2><ul>{skill_items}</ul></section>

@@ -41,6 +41,20 @@ Get a key at console.anthropic.com. **Never paste it into a chat or commit it.**
   `ANTHROPIC_API_KEY`, or run `gh secret set ANTHROPIC_API_KEY` (it prompts without echoing).
 - Check with `jarvis status` (should say `Brain: online`). Model defaults to `claude-sonnet-5-5`; override with `JARVIS_MODEL`.
 
+### Budget (never overspend)
+```
+jarvis budget 5.8        # total credit in USD, as shown in the Anthropic console
+jarvis budget            # spent / left; the dashboard has a Brain budget widget
+jarvis budget add 3      # after you top up
+```
+The API doesn't tell Jarvis your remaining credit, so Jarvis tracks its own spend (tokens x published prices).
+It is an estimate: the console is the source of truth. With a budget set, Jarvis refuses any call whose worst case
+could exceed what is left and falls back to its offline library.
+
+### Make it about you
+`jarvis about` asks a few questions (skills, free time, goals, money, annoyances) and stores them in
+`data/profile.json` on your machine. A short summary goes into the prompts for new skills and ideas.
+
 ### Run it daily
 - **On your computer:** `jarvis schedule` prints a cron line.
 - **On GitHub:** `.github/workflows/daily-learning.yml` runs every morning and opens a pull request with the day's
@@ -84,6 +98,8 @@ waving at a friend doesn't change the channel. Power is deliberately **not** map
 
 "Connect to Wi-Fi" is implemented as *awareness*: Jarvis reads your network name and finds devices on it. It
 doesn't join networks or probe devices you don't own.
+
+See `ROADMAP.md` for where this is going.
 
 ## Writing / reviewing skills
 A skill is a folder `skills/<name>/` with `skill.py` (NAME, DESCRIPTION, TRIGGERS, EXAMPLES, LESSON, `run(args, ctx)`)

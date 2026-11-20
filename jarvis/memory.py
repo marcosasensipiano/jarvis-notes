@@ -13,6 +13,7 @@ DEFAULT = {
     "upgrades": [],        # ids of unlocked visual upgrades
     "custom_upgrades": [], # CSS-only upgrades Jarvis designed itself
     "failures": [],        # learning attempts that did not pass their tests
+    "spend": {"budget_usd": None, "spent_usd": 0.0, "calls": 0, "log": []},  # owned by spend.py
 }
 
 
@@ -33,7 +34,14 @@ def load() -> dict:
     return out
 
 
-def save(m: dict) -> None:
+def save(m: dict, keep_spend: bool = True) -> None:
+    """keep_spend: spend.py records API costs mid-run, so a caller holding an older copy of memory must not
+    overwrite them. Only spend.py passes keep_spend=False."""
+    if keep_spend and _file().exists():
+        try:
+            m["spend"] = json.loads(_file().read_text()).get("spend", m.get("spend"))
+        except json.JSONDecodeError:
+            pass
     _file().write_text(json.dumps(m, indent=2, sort_keys=True) + "\n")
 
 

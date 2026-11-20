@@ -1,7 +1,7 @@
 """Build ideas. With an API key Jarvis reads how you use it and invents ideas; offline it draws from
 a curated bank, personalised by what you use and what you keep asking for that it cannot do yet."""
 from datetime import date
-from . import brain
+from . import brain, profile
 
 BANK = [
     ("Morning scene", "One gesture or phrase runs the briefing on screen and turns the TV to your first app.", "M"),
@@ -30,11 +30,12 @@ def refresh(m: dict, n: int = 3) -> list:
         try:
             prompt = (
                 "You are Jarvis, a personal assistant. Propose %d NEW build ideas that would make your user's day "
-                "easier. Installed skills: %s. Usage counts: %s. Unmet requests: %s. Already proposed: %s.\n"
+                "easier (include at least one that could earn them money if their profile allows). Installed skills: %s. "
+                "Usage counts: %s. Unmet requests: %s. Already proposed: %s. About the user: %s.\n"
                 'Reply with JSON only: [{"title":str,"why":str,"effort":"S|M|L"}]'
-                % (n, sorted(m["skills"]), m["usage"], m["gaps"], sorted(have))
+                % (n, sorted(m["skills"]), m["usage"], m["gaps"], sorted(have), profile.summary() or "unknown")
             )
-            for i in brain.ask_json(prompt, max_tokens=1200)[:n]:
+            for i in brain.ask_json(prompt, max_tokens=1200, purpose="ideas")[:n]:
                 new.append((str(i["title"]), str(i["why"]), str(i.get("effort", "M"))[:1].upper()))
         except Exception:
             new = []
