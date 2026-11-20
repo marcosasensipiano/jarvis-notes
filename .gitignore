@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+config/devices.json
+config/gestures.json
+data/*
+!data/memory.json
+!data/.gitkeep

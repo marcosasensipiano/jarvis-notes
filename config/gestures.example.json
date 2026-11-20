@@ -1,0 +1,15 @@
+{
+  "hold_seconds": 0.8,
+  "cooldown_seconds": 1.5,
+  "map": {
+    "open_palm": "play_pause",
+    "fist": "mute",
+    "peace": "home",
+    "thumbs_up": "volume_up",
+    "thumbs_down": "volume_down",
+    "swipe_up": "volume_up",
+    "swipe_down": "volume_down",
+    "swipe_left": "rewind",
+    "swipe_right": "forward"
+  }
+}

@@ -1,0 +1,15 @@
+[project]
+name = "jarvis"
+version = "0.1.0"
+description = "A personal assistant that learns a new skill every day."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+gestures = ["opencv-python", "mediapipe"]
+
+[project.scripts]
+jarvis = "jarvis.cli:main"
+
+[tool.setuptools]
+packages = ["jarvis", "jarvis.devices", "jarvis.gestures"]

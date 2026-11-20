@@ -1,0 +1,44 @@
+name: Jarvis daily learning
+
+# Every morning Jarvis learns a skill, upgrades its look, proposes ideas and builds one small thing.
+# It opens a pull request: you review and merge, so nothing changes on your machine without you.
+# Needs a repository secret ANTHROPIC_API_KEY for invention; without it Jarvis unlocks its built-in library.
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tests first (never learn on a broken base)
+        run: python -m unittest discover -s tests -t .
+      - name: Learn
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m jarvis learn --build
+      - name: Tests after learning
+        run: python -m unittest discover -s tests -t .
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "nothing new today"; exit 0; fi
+          day=$(date -u +%F)
+          git config user.name "jarvis-bot"
+          git config user.email "jarvis-bot@users.noreply.github.com"
+          git checkout -b "jarvis/learn-$day"
+          git add -A
+          git commit -m "Jarvis learns: $day"
+          git push -u origin "jarvis/learn-$day"
+          gh pr create --title "Jarvis learned something new ($day)" \
+            --body "Today's lesson is in \`lessons/\`. Run \`jarvis today\` after merging to learn how to use it."
