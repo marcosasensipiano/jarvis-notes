@@ -41,14 +41,14 @@ class TV(unittest.TestCase):
         self.assertIn(("-s", "1.2.3.4:5555", "shell", "input", "keyevent", "25"), calls)
 
     def test_every_action_is_mapped_by_every_keyed_driver(self):
-        for d in (tv.RokuTV, tv.AdbTV):
+        for d in (tv.RokuTV, tv.AdbTV, tv.SamsungTV):
             self.assertEqual(set(d.KEYS), set(tv.ACTIONS), d.__name__)
 
     def test_unknown_action_and_type(self):
         with self.assertRaises(ValueError):
             tv.DryRunTV().send("explode")
         with self.assertRaises(ValueError):
-            tv.make_tv({"type": "samsung"})
+            tv.make_tv({"type": "lg"})
 
 
 if __name__ == "__main__":

@@ -34,6 +34,13 @@ Each `jarvis learn` run:
 5. **Builds on its own.** `jarvis learn --build` implements one small idea in `builds/<name>/` with tests.
    Nothing goes live until you run `jarvis approve <name>`.
 
+### Give Jarvis its brain (API key)
+Get a key at console.anthropic.com. **Never paste it into a chat or commit it.**
+- *Your computer:* add `export ANTHROPIC_API_KEY=...` to `~/.zshrc`/`~/.bashrc` (and to the crontab line if you use cron).
+- *GitHub daily job:* repo Settings > Secrets and variables > Actions > New repository secret, name
+  `ANTHROPIC_API_KEY`, or run `gh secret set ANTHROPIC_API_KEY` (it prompts without echoing).
+- Check with `jarvis status` (should say `Brain: online`). Model defaults to `claude-sonnet-5-5`; override with `JARVIS_MODEL`.
+
 ### Run it daily
 - **On your computer:** `jarvis schedule` prints a cron line.
 - **On GitHub:** `.github/workflows/daily-learning.yml` runs every morning and opens a pull request with the day's
@@ -51,10 +58,24 @@ jarvis gestures                        # live (pip install opencv-python mediapi
 
 | TV | Status |
 |---|---|
+| Samsung Tizen (QLED etc., 2016+) | supported (`samsung`), see setup below |
 | Roku (TV or stick) | supported (`roku`) |
 | Android TV / Google TV / Fire TV / Shield | supported (`adb`, enable network debugging) |
 | Any HDMI-CEC TV via a Pi | power only (`cec`) |
-| Samsung (Tizen), LG (webOS) | **not built yet.** They need websocket pairing; it's on the learning backlog, so ask Jarvis for it |
+| LG (webOS) | **not built yet**; it's on the learning backlog, so ask Jarvis for it |
+
+### Samsung QLED setup
+1. TV and the computer running Jarvis on the same Wi-Fi/network. Run `jarvis discover` to see the TV's IP
+   (or TV: Settings > General > Network > Network Status > IP Settings).
+2. `cp config/devices.example.json config/devices.json`, set `"type": "samsung"` and `"host"`.
+3. Run `jarvis tv volume up`. **The TV shows an "Allow Jarvis?" prompt: pick Allow** and run it again. The pairing
+   token is saved in `data/samsung_token.json`, so it asks only once. If you never see the prompt, check
+   Settings > General > External Device Manager > Device Connection Manager > Access Notification.
+4. Optional, for `tv on` from standby: put the TV's MAC in `"mac"` (shown by `jarvis discover`) and enable
+   Settings > General > Network > Expert Settings > Power On with Mobile. This uses Wake-on-LAN, which is
+   model-dependent and works best when the TV is on Ethernet; on Wi-Fi it may not wake. Turning *off* always works.
+5. `play/pause`: Samsung has separate Play and Pause keys, so Jarvis alternates them and can drift out of sync
+   if you also use the physical remote.
 
 Gestures (edit `config/gestures.json` to remap): hold open palm = play/pause, fist = mute, peace = home,
 thumbs up/down = volume (repeats while held), swipe an open palm up/down/left/right = volume / rewind / forward.
@@ -77,5 +98,5 @@ and `test_skill.py`. `python -m unittest discover -s tests -t .` runs everything
 
 ## Status
 Tested: skills, routing, learning loop, safety guard, gesture classification/engine (on synthetic landmarks),
-TV request formats, network parsing, brain pipeline (with the model mocked). **Not tested against real hardware or
-the live Claude API**: the TV drivers on an actual TV, webcam/MediaPipe capture, SSDP on your network.
+TV request formats (the Samsung driver is tested against a fake TV speaking real WebSocket framing), network parsing, brain pipeline (with the model mocked). **Not tested against real hardware or
+the live Claude API**: the TV drivers on an actual TV (including the Samsung TLS connection, which the fake server skips), webcam/MediaPipe capture, SSDP on your network.
