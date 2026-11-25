@@ -6,3 +6,4 @@ config/gestures.json
 data/*
 !data/memory.json
 !data/.gitkeep
+gigfinder/config.local.json

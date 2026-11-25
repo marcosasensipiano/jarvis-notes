@@ -1,0 +1,12 @@
+{
+  "name": "gigfinder",
+  "version": "1.0.0",
+  "description": "Personal aggregator of piano/violin gig offers (weddings, baptisms, events, funerals) around Sagunto",
+  "type": "module",
+  "scripts": {
+    "scrape": "node src/run.js",
+    "start": "node src/server.js",
+    "test": "node --test src/classify.test.js"
+  },
+  "engines": { "node": ">=20" }
+}

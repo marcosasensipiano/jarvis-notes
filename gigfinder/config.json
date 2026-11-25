@@ -1,0 +1,27 @@
+{
+  "me": {
+    "name": "TU NOMBRE",
+    "phone": "",
+    "bio": "pianista y violinista con experiencia en bodas, bautizos, comuniones, cumpleaños y ceremonias",
+    "demoLink": ""
+  },
+  "location": { "name": "Sagunto", "lat": 39.6833, "lon": -0.2744, "radiusKm": 100 },
+  "instruments": ["piano", "pianista", "violín", "violin", "violinista", "teclado", "dúo", "duo", "cuarteto", "música en directo", "músicos", "musicos", "músico", "musico"],
+  "events": ["boda", "bodas", "bautizo", "bautizos", "comunión", "comunion", "cumpleaños", "evento", "eventos", "funeral", "funerales", "tanatorio", "misa", "ceremonia", "cóctel", "coctel", "aniversario", "banquete", "recepción"],
+  "demandWords": ["se busca", "busco", "buscamos", "necesito", "necesitamos", "contratar", "contratamos", "solicito", "precisamos", "oferta", "demanda", "presupuesto", "se necesita", "urgente"],
+  "advertWords": ["ofrezco", "ofrecemos", "disponible", "nuestro servicio", "contrata nuestro", "reserva ya", "presupuesto sin compromiso", "somos un dúo", "nos dedicamos"],
+  "sites": ["milanuncios.com", "wallapop.com", "facebook.com", "vibbo.com", "tablondeanuncios.com", "cronoshare.com", "bodas.net", "infojobs.net", "es.indeed.com", "jooble.org", "instagram.com", "idealista.com/tablon", "loquo.com", "segundamano.es", "clasificados.es"],
+  "searchPhrases": [
+    "se busca pianista boda",
+    "se busca violinista boda",
+    "busco pianista y violinista para ceremonia",
+    "músicos para boda piano violín se buscan",
+    "pianista para bautizo comunión cumpleaños evento",
+    "violinista para funeral tanatorio misa"
+  ],
+  "regionWords": ["Sagunto", "Valencia", "Castellón", "provincia de Valencia"],
+  "rssFeeds": [],
+  "searchDelayMs": 1500,
+  "maxAgeDays": 60,
+  "ntfyTopic": ""
+}

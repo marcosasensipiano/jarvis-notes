@@ -1,0 +1,279 @@
+{
+ "updated": "2026-11-25T09:58:54.609Z",
+ "report": {
+  "search": {
+   "queries": 69,
+   "ok": 0,
+   "fail": 69
+  },
+  "wallapop": {
+   "ok": 0,
+   "fail": 4
+  },
+  "rss": {
+   "feeds": 0,
+   "ok": 0,
+   "fail": 0
+  }
+ },
+ "location": {
+  "name": "Sagunto",
+  "lat": 39.6833,
+  "lon": -0.2744,
+  "radiusKm": 100
+ },
+ "me": {
+  "name": "TU NOMBRE",
+  "phone": "",
+  "bio": "pianista y violinista con experiencia en bodas, bautizos, comuniones, cumpleaños y ceremonias",
+  "demoLink": ""
+ },
+ "links": [
+  {
+   "group": "Milanuncios",
+   "label": "pianista boda",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=pianista%20boda&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "pianista boda",
+   "url": "https://es.wallapop.com/app/search?keywords=pianista%20boda&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "pianista boda",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=pianista%20boda"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "pianista boda",
+   "url": "https://www.facebook.com/search/posts/?q=pianista%20boda%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "pianista boda",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20boda%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "pianista boda",
+   "url": "https://www.google.com/search?q=se%20busca%20pianista%20boda%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "pianista boda",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=pianista%20boda"
+  },
+  {
+   "group": "Milanuncios",
+   "label": "violinista boda",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=violinista%20boda&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "violinista boda",
+   "url": "https://es.wallapop.com/app/search?keywords=violinista%20boda&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "violinista boda",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=violinista%20boda"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "violinista boda",
+   "url": "https://www.facebook.com/search/posts/?q=violinista%20boda%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "violinista boda",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20boda%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "violinista boda",
+   "url": "https://www.google.com/search?q=se%20busca%20violinista%20boda%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "violinista boda",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=violinista%20boda"
+  },
+  {
+   "group": "Milanuncios",
+   "label": "músicos boda",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=m%C3%BAsicos%20boda&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "músicos boda",
+   "url": "https://es.wallapop.com/app/search?keywords=m%C3%BAsicos%20boda&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "músicos boda",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=m%C3%BAsicos%20boda"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "músicos boda",
+   "url": "https://www.facebook.com/search/posts/?q=m%C3%BAsicos%20boda%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "músicos boda",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20boda%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "músicos boda",
+   "url": "https://www.google.com/search?q=se%20busca%20m%C3%BAsicos%20boda%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "músicos boda",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=m%C3%BAsicos%20boda"
+  },
+  {
+   "group": "Milanuncios",
+   "label": "pianista evento",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=pianista%20evento&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "pianista evento",
+   "url": "https://es.wallapop.com/app/search?keywords=pianista%20evento&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "pianista evento",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=pianista%20evento"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "pianista evento",
+   "url": "https://www.facebook.com/search/posts/?q=pianista%20evento%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "pianista evento",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20evento%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "pianista evento",
+   "url": "https://www.google.com/search?q=se%20busca%20pianista%20evento%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "pianista evento",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=pianista%20evento"
+  },
+  {
+   "group": "Milanuncios",
+   "label": "violinista funeral",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=violinista%20funeral&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "violinista funeral",
+   "url": "https://es.wallapop.com/app/search?keywords=violinista%20funeral&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "violinista funeral",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=violinista%20funeral"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "violinista funeral",
+   "url": "https://www.facebook.com/search/posts/?q=violinista%20funeral%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "violinista funeral",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20funeral%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "violinista funeral",
+   "url": "https://www.google.com/search?q=se%20busca%20violinista%20funeral%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "violinista funeral",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=violinista%20funeral"
+  },
+  {
+   "group": "Milanuncios",
+   "label": "pianista bautizo",
+   "url": "https://www.milanuncios.com/anuncios-en-valencia/?s=pianista%20bautizo&orden=date"
+  },
+  {
+   "group": "Wallapop",
+   "label": "pianista bautizo",
+   "url": "https://es.wallapop.com/app/search?keywords=pianista%20bautizo&latitude=39.6833&longitude=-0.2744&distance=100000&order_by=newest"
+  },
+  {
+   "group": "Vibbo",
+   "label": "pianista bautizo",
+   "url": "https://www.vibbo.com/anuncios-valencia/?q=pianista%20bautizo"
+  },
+  {
+   "group": "Facebook (posts)",
+   "label": "pianista bautizo",
+   "url": "https://www.facebook.com/search/posts/?q=pianista%20bautizo%20Sagunto"
+  },
+  {
+   "group": "Facebook (groups)",
+   "label": "pianista bautizo",
+   "url": "https://www.facebook.com/search/groups/?q=m%C3%BAsicos%20bautizo%20Valencia"
+  },
+  {
+   "group": "Google (last week)",
+   "label": "pianista bautizo",
+   "url": "https://www.google.com/search?q=se%20busca%20pianista%20bautizo%20Sagunto&tbs=qdr:w"
+  },
+  {
+   "group": "Instagram",
+   "label": "pianista bautizo",
+   "url": "https://www.instagram.com/explore/search/keyword/?q=pianista%20bautizo"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "Cronoshare – Música (leads)",
+   "url": "https://www.cronoshare.com/"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "Bodas.net – proveedores música",
+   "url": "https://www.bodas.net/musica-boda/valencia"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "Superprof (clases piano/violín)",
+   "url": "https://www.superprof.es/"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "InfoJobs – músico",
+   "url": "https://www.infojobs.net/jobsearch/search-results/list.xhtml?keyword=m%C3%BAsico%20pianista%20violinista&provinceIds=47"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "Indeed – pianista",
+   "url": "https://es.indeed.com/jobs?q=pianista%20violinista&l=Sagunto&radius=100"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "GigSalad",
+   "url": "https://www.gigsalad.com/"
+  },
+  {
+   "group": "Marketplaces",
+   "label": "SoundBetter",
+   "url": "https://soundbetter.com/"
+  }
+ ],
+ "offers": []
+}
