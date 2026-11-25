@@ -30,3 +30,8 @@ Messages are never auto-sent; you press send.
 (private-repo GitHub Pages needs a paid plan; Cloudflare Pages / Netlify free work). Push alerts: pick a secret topic name,
 install the **ntfy** app, subscribe to it, and set it as `NTFY_TOPIC` (repo secret or `config.local.json`).
 Note: some sites block datacenter IPs; running `npm start` on a home PC/Raspberry Pi is more reliable.
+
+## Windows quick start
+1. Install Node.js LTS from https://nodejs.org (one-time).
+2. Download the repo (green **Code → Download ZIP**, branch `claude/festive-carson-ezxkqb`), unzip, open the `gigfinder` folder.
+3. Double-click `start.bat`. Open http://localhost:8080. For your phone (same Wi-Fi): http://<PC-IP>:8080.
