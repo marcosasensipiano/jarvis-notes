@@ -35,3 +35,10 @@ Note: some sites block datacenter IPs; running `npm start` on a home PC/Raspberr
 1. Install Node.js LTS from https://nodejs.org (one-time).
 2. Download the repo (green **Code → Download ZIP**, branch `claude/festive-carson-ezxkqb`), unzip, open the `gigfinder` folder.
 3. Double-click `start.bat`. Open http://localhost:8080. For your phone (same Wi-Fi): http://<PC-IP>:8080.
+
+## Phone alerts (ntfy)
+Install the **ntfy** app → Subscribe to topic shown in `config.json` (`ntfyTopic`). New offers (not musician ads) push to your phone.
+Keep the topic name private: anyone who knows it can read the alerts.
+
+## Phone access away from home
+Same Wi-Fi: `http://<PC-IP>:8080`. Anywhere: install **Tailscale** (free) on PC and phone, then open `http://<PC-tailscale-name>:8080`.
