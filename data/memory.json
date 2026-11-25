@@ -1,0 +1,19 @@
+{
+  "custom_upgrades": [],
+  "day": 0,
+  "failures": [],
+  "gaps": {},
+  "ideas": [],
+  "last_learn": null,
+  "skills": {},
+  "spend": {
+    "budget_usd": null,
+    "calls": 0,
+    "log": [],
+    "spent_usd": 0.0
+  },
+  "upgrades": [],
+  "usage": {
+    "gigs": 1
+  }
+}
