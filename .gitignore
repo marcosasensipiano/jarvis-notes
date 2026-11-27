@@ -6,3 +6,58 @@ config/gestures.json
 data/*
 !data/memory.json
 !data/.gitkeep
+
+# --- Secrets and credentials ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials*.json
+*token*.json
+*.token
+id_rsa*
+id_ed25519*
+
+# --- Dependencies and build output ---
+node_modules/
+dist/
+build/
+.next/
+*.egg-info/
+
+# --- Heavy media files ---
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+*.m4a
+*.ogg
+*.psd
+
+# --- Models and large data ---
+*.pt
+*.pth
+*.onnx
+*.gguf
+*.safetensors
+*.ckpt
+*.h5
+*.bin
+*.zip
+*.tar
+*.tar.gz
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
